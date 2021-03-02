@@ -2,14 +2,14 @@ C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\NewPlayer.exe.config
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\NewPlayer.exe
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\NewPlayer.pdb
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer.csprojAssemblyReference.cache
-C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\MainWindow.g.cs
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\App.g.cs
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer_MarkupCompile.cache
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer_MarkupCompile.lref
-C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\MainWindow.baml
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer.g.resources
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer.Properties.Resources.resources
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer.csproj.GenerateResource.cache
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer.csproj.CoreCompileInputs.cache
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer.exe
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer.pdb
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\View\MainWindow.g.cs
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\View\MainWindow.baml
