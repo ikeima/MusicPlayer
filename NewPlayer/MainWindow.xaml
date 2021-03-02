@@ -1,0 +1,44 @@
+﻿<Window x:Class="NewPlayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewPlayer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Border  Background="Gray" Opacity="0.5" CornerRadius="35" Height="500" Width="800" MouseDown="Border_MouseDown" />
+        <Border Background="Black" Height="400" CornerRadius="35" Width="300" HorizontalAlignment="Left" Margin="50">
+            <StackPanel Margin="10">
+                <ListBox Background="Transparent" Height="350" VerticalAlignment="Top"
+                         Name="musicList"
+                         BorderThickness="0"
+                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                         Foreground="White">
+
+                </ListBox>
+
+                <Button Width="100" Height="30" Margin="0,0"
+                        Click="SelectAndLoadMusic">
+
+                </Button>
+            </StackPanel>           
+          
+        </Border>
+
+
+        <Border Background="Black" Height="280" VerticalAlignment="Top" CornerRadius="35" Width="300" HorizontalAlignment="Right" Margin="50"/>
+        <Border Background="Black" Height="100" VerticalAlignment="Bottom" CornerRadius="35" Width="300" HorizontalAlignment="Right" Margin="50"/>
+    </Grid>
+</Window>
