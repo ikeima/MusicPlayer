@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="ModelView\BaseViewModel.cs" />
     <Compile Include="ModelView\MainViewModel.cs" />
+    <Compile Include="Model\PlayerFunctions.cs" />
     <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

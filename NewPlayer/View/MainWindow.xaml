@@ -22,6 +22,7 @@
             <StackPanel Margin="10">
                 <ListBox Background="Transparent" Height="350" VerticalAlignment="Top"
                          ItemsSource="{Binding MusicCollection}"
+                         SelectedItem="{Binding SelectedSong}"
                          BorderThickness="0"
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -38,6 +39,28 @@
           
         </Border>
         <Border Background="Black" Height="280" VerticalAlignment="Top" CornerRadius="35" Width="300" HorizontalAlignment="Right" Margin="50"/>
-        <Border Background="Black" Height="100" VerticalAlignment="Bottom" CornerRadius="35" Width="300" HorizontalAlignment="Right" Margin="50"/>
+        <Border Background="Black" Height="100" VerticalAlignment="Bottom" CornerRadius="35" Width="300" HorizontalAlignment="Right" Margin="50">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Width="50" Height="50" Command="{Binding Play}">
+                    Play
+                </Button>
+
+                <Button Width="50" Height="50" Command="{Binding Pause}">
+                    Pause
+                </Button>
+
+                <Button Width="50" Height="50" Command="{Binding Resume}">
+                    Resume
+                </Button>
+
+                <Button Width="50" Height="50" Command="{Binding Previous}">
+                    Previous
+                </Button>
+
+                <Button Width="50" Height="50" Command="{Binding Next}">
+                    Next
+                </Button>   
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
