@@ -12,7 +12,7 @@ namespace NewPlayer.ModelView
     class MainViewModel : BaseViewModel
     {
         private ObservableCollection<string> _musicCollection = new ObservableCollection<string>();
-        public ObservableCollection<string> MusicCollection
+        public ObservableCollection<string> MusicCollection // Коллекция аудизописей, отображаемая в представлении
         {
             get { return _musicCollection; }
             set
@@ -22,19 +22,8 @@ namespace NewPlayer.ModelView
             }
         }
 
-        private BitmapImage _selectedSongImage = new BitmapImage();
-        public BitmapImage SelectedSongImage
-        {
-            get { return _selectedSongImage; }
-            set
-            {
-                _selectedSongImage = value;
-                OnPropertyChanged("SelectedSongImage");
-            }
-        }
-
         private string _selectedSong;
-        public string SelectedSong
+        public string SelectedSong // Выбранная аудиозапись
         {
             get { return _selectedSong; }
             set
@@ -49,13 +38,45 @@ namespace NewPlayer.ModelView
                         break;
                     }
                 }
-
                 OnPropertyChanged("SelectedSong");
             }
         }
 
+        private BitmapImage _selectedSongImage = new BitmapImage();
+        public BitmapImage SelectedSongImage // Обложка выбранной песни
+        {
+            get { return _selectedSongImage; }
+            set
+            {
+                _selectedSongImage = value;
+                OnPropertyChanged("SelectedSongImage");
+            }
+        }
+
+        private string _selectedSongName;
+        public string SelectedSongName // Название выбранной аудиозаписи
+        {
+            get { return _selectedSongName; }
+            set
+            {
+                _selectedSongName = value;
+                OnPropertyChanged("SelectedSongName");
+            }
+        }
+
+        private string _selectedSongArtist;
+        public string SelectedSongArtist // Исполнитель выбранной аудиозаписи
+        {
+            get { return _selectedSongArtist; }
+            set
+            {
+                _selectedSongArtist = value;
+                OnPropertyChanged("SelectedSongArtist");
+            }
+        }
+
         private string _selectedSongPath;
-        public string SelectedSongPath
+        public string SelectedSongPath // Полный путь выбранной аудиозаписи
         {
             get { return _selectedSongPath; }
             set
@@ -66,7 +87,7 @@ namespace NewPlayer.ModelView
         }
 
         private List<string> _musicsPath = new List<string>();
-        public List<string> MusicsPath
+        public List<string> MusicsPath // Лист для хранения полных путей аудиозаписей
         {
             get { return _musicsPath; }
             set
@@ -77,7 +98,7 @@ namespace NewPlayer.ModelView
         }
 
         private RelayCommand _loadMusic;
-        public RelayCommand LoadMusic
+        public RelayCommand LoadMusic // Команда для загрузки музыки в коллекцию и лист
         {
             get
             {
@@ -105,7 +126,7 @@ namespace NewPlayer.ModelView
         }
 
         private MediaPlayer _player = new MediaPlayer();
-        public MediaPlayer Player
+        public MediaPlayer Player // Медиа-плеер, с помощью которого проигрываются аудиозаписи
         {
             get { return _player; }
             set
@@ -116,19 +137,116 @@ namespace NewPlayer.ModelView
         }
 
         private RelayCommand _play;
-        public RelayCommand Play
+        public RelayCommand Play // Запуск песни
         {
             get
             {
                 _play = new RelayCommand(obj =>
                 {
-                    Player.Open(new Uri(SelectedSongPath));
-                    Player.Play();
+                    try
+                    {
+                        Player.Open(new Uri(SelectedSongPath));
+                        Player.Play();
 
-                    SetSongPicture();
-
+                        SetSongPicture();
+                        TrimSongName(SelectedSong);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Музыку загрузи, бля");
+                    }
                 });
                 return _play;
+            }
+        }
+
+        private RelayCommand _pause;
+        public RelayCommand Pause // Поставить на паузу
+        {
+            get
+            {
+                _pause = new RelayCommand(obj =>
+                {
+                    Player.Pause();
+                });
+                return _pause;
+            }
+        }
+
+        private RelayCommand _resume;
+        public RelayCommand Resume // Возобновить песню
+        {
+            get
+            {
+                _resume = new RelayCommand(obj =>
+                {
+                    Player.Play();
+                });
+                return _resume;
+            }
+        }
+
+
+        private RelayCommand _next;
+        public RelayCommand Next // Переключение песни на следующую в листе
+        {
+            get
+            {
+                _next = new RelayCommand(obj =>
+                {
+                    try
+                    {
+                        int indexNext = MusicsPath.IndexOf(SelectedSongPath) + 1;
+                        Player.Open(new Uri(MusicsPath[indexNext]));
+                        SelectedSong = MusicCollection[indexNext];
+                        Player.Play();
+
+                        SetSongPicture();
+                        TrimSongName(SelectedSong);
+                    }
+                    catch
+                    {
+                        int indexFirst = 0;
+                        Player.Open(new Uri(MusicsPath[indexFirst]));
+                        SelectedSong = MusicCollection[indexFirst];
+                        Player.Play();
+
+                        SetSongPicture();
+                        TrimSongName(SelectedSong);
+                    }
+                });
+                return _next;
+            }
+        }
+
+        private RelayCommand _previous;
+        public RelayCommand Previous // Переключение песни на предыдущую в листе
+        {
+            get
+            {
+                _previous = new RelayCommand(obj =>
+                {
+                    try
+                    {
+                        int indexPrevious = MusicsPath.IndexOf(SelectedSongPath) - 1;
+                        Player.Open(new Uri(MusicsPath[indexPrevious]));
+                        SelectedSong = MusicCollection[indexPrevious];
+                        Player.Play();
+
+                        SetSongPicture();
+                        TrimSongName(SelectedSong);
+                    }
+                    catch
+                    {
+                        Player.Open(new Uri(SelectedSongPath));
+                        Player.Play();
+
+                        SetSongPicture();
+                        TrimSongName(SelectedSong);
+                    }
+
+                });
+                return _previous;
             }
         }
 
@@ -152,95 +270,26 @@ namespace NewPlayer.ModelView
                     SelectedSongImage = bitmap;
                 }
             }
-            catch
+            catch // В случае отсутствия обложки - ставится дефолтная картинка
             {
-                //using (MemoryStream stream = new MemoryStream())
-                //{
-                //    BitmapImage bitmap = new BitmapImage();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"/Resources/DefaultGif.gif", UriKind.Relative)); 
 
-                //    stream.Position = 0;
-
-                //    bitmap.BeginInit();
-                //    bitmap.StreamSource = stream;
-                //    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                //    bitmap.EndInit();
-
-                //    SelectedSongImage = bitmap;
-                //}
+                SelectedSongImage = bitmap;
             }
         }
 
-        private RelayCommand _pause;
-        public RelayCommand Pause
+        private void TrimSongName(string song) // Метод парсит строку с названием песни, выделяет отдельно название и исполнителя, так же удаляет расширение из названия
         {
-            get
+            song = song.TrimEnd('.', 'm', 'p', '3');
+
+            for (int i = 0; i < song.Length; i++)
             {
-                _pause = new RelayCommand(obj =>
+                if (char.IsPunctuation(song[i]))
                 {
-                    Player.Pause();
-                });
-                return _pause;
-            }
-        }
-
-        private RelayCommand _resume;
-        public RelayCommand Resume
-        {
-            get
-            {
-                _resume = new RelayCommand(obj =>
-                {
-                    Player.Play();
-                });
-                return _resume;
-            }
-        }
-
-
-        private RelayCommand _next;
-        public RelayCommand Next
-        {
-            get
-            {
-                _next = new RelayCommand(obj =>
-                {
-                    int indexNext = MusicsPath.IndexOf(SelectedSongPath) + 1;
-                    Player.Open(new Uri(MusicsPath[indexNext]));
-                    SelectedSong = MusicCollection[indexNext];
-                    Player.Play();
-
-                    SetSongPicture();
-                });
-                return _next;
-            }
-        }
-
-        private RelayCommand _previous;
-        public RelayCommand Previous
-        {
-            get
-            {
-                _previous = new RelayCommand(obj =>
-                {
-                    try
-                    {
-                        int indexPrevious = MusicsPath.IndexOf(SelectedSongPath) - 1;
-                        Player.Open(new Uri(MusicsPath[indexPrevious]));
-                        SelectedSong = MusicCollection[indexPrevious];
-                        Player.Play();
-
-                        SetSongPicture();
-                    }
-                    catch
-                    {
-                        Player.Open(new Uri(SelectedSongPath));
-                        Player.Play();
-
-                        SetSongPicture();
-                    }
-
-                });
-                return _previous;
+                    SelectedSongArtist = song.Remove(i);
+                    SelectedSongName = song.Substring(i + 2);
+                    break;
+                }
             }
         }
 

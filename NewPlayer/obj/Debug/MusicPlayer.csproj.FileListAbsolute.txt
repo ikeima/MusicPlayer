@@ -23,5 +23,8 @@ C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\MaterialDesignColors.p
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\App.baml
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\WpfAnimatedGif.dll
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\WpfAnimatedGif.pdb
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\WpfAnimatedGif.xml
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\Resources\DefaultGif.gif
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer_Content.g.cs

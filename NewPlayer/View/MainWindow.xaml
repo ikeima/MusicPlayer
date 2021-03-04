@@ -4,12 +4,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
         xmlns:local="clr-namespace:NewPlayer"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="700"
         WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <Style TargetType="TextBlock">
@@ -24,15 +26,15 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border  Background="MediumPurple" Grid.ColumnSpan="2" Opacity="0.4" CornerRadius="20" Height="450" Width="700" MouseDown="Border_MouseDown" />
+        <Border Background="Black"  Grid.ColumnSpan="2" Opacity="0.4" CornerRadius="20" Height="450" Width="700" MouseDown="Border_MouseDown" />
         <StackPanel Grid.Column="1" Orientation="Horizontal" Height="24" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,40,0">
-            <Button FontSize="5" Height="20" Width="20" Margin="2">
+            <Button  BorderBrush="Black"   Background="Black"  FontSize="5" Height="20" Width="20" Margin="2">
                 <materialDesign:PackIcon Kind="Minus" Margin="-14,-3" Opacity="0.8"/>
             </Button>
-            <Button Height="20" Width="20" Margin="2">
+            <Button  BorderBrush="Black"   Background="Black" Height="20" Width="20" Margin="2">
                 <materialDesign:PackIcon Kind="SquareOutline" Margin="-14,-3" Opacity="0.8"/>
             </Button>
-            <Button Height="20" Width="20" Margin="2">
+            <Button  BorderBrush="Black"   Background="Black" Height="20" Width="20" Margin="2">
                 <materialDesign:PackIcon Kind="Close" Margin="-14,-3" Opacity="0.8" />
             </Button>
         </StackPanel>
@@ -45,37 +47,36 @@
                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
                          Foreground="White" HorizontalAlignment="Left" Width="280"
                          FontFamily="Comic sans ms" FontSize="15">
-
                 </ListBox>
 
                 <Button Width="50" Height="50" 
-                        Command="{Binding LoadMusic}">
+                        Command="{Binding LoadMusic}"
+                        Background="Black"
+                        BorderBrush="Black">
                     <materialDesign:PackIcon Kind="FolderOpen" Height="40"  Width="40" Margin="-11"/>
                 </Button>              
             </StackPanel>           
         </materialDesign:Card>
 
-
-
         <materialDesign:Card Grid.Column="1" Height="400" UniformCornerRadius="20" Width="300" Background="Gray" >
-            <StackPanel >
-            <Image Source="{Binding SelectedSongImage}"  Height="250" Width="300" VerticalAlignment="Top" Stretch="Fill"></Image>
-                <TextBlock Height="50" FontSize="40"  FontWeight="Heavy">Песня</TextBlock>
-                <TextBlock Height="35" FontSize="25">Группа</TextBlock>
+            <StackPanel>
+                <Image Source="{Binding SelectedSongImage}" Height="250" Width="300" VerticalAlignment="Top" Stretch="Fill"></Image>
+                <TextBlock Height="50" FontSize="20" Text="{Binding SelectedSongName}"></TextBlock>
+                <TextBlock Height="35" FontSize="20" Text="{Binding SelectedSongArtist}"></TextBlock>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,10,0,0">
-                    <Button Width="50" Height="40" Command="{Binding Previous}">
+                    <Button  BorderBrush="Black" Background="Black" Width="50" Height="40" Command="{Binding Previous}">
                         <materialDesign:PackIcon Kind="SkipPreviousCircleOutline" Margin="-10" Height="30" Width="30"/>
                     </Button>
-                    <Button Width="50" Height="40" Command="{Binding Pause}">
+                    <Button BorderBrush="Black"  Background="Black"  Width="50" Height="40" Command="{Binding Pause}">
                         <materialDesign:PackIcon Kind="PauseCircleOutline" Margin="-10" Height="30" Width="30"/>
                     </Button>
-                    <Button Width="50" Height="40" Command="{Binding Play}">
+                    <Button BorderBrush="Black"  Background="Black"  Width="50" Height="40" Command="{Binding Play}">
                         <materialDesign:PackIcon Kind="PlayArrow" Margin="-10" Height="30" Width="30" />
                     </Button>
-                    <Button  Width="50" Height="40" Command="{Binding Resume}">
+                    <Button BorderBrush="Black"  Background="Black"   Width="50" Height="40" Command="{Binding Resume}">
                         <materialDesign:PackIcon Kind="PlayCircleOutline" Margin="-10" Height="30" Width="30"/>
-                    </Button>                    
-                    <Button Width="50" Height="40" Command="{Binding Next}">
+                    </Button>
+                    <Button  BorderBrush="Black"  Background="Black" Width="50" Height="40" Command="{Binding Next}">
                         <materialDesign:PackIcon Kind="SkipNextCircleOutline" Margin="-10" Height="30" Width="30" />
                     </Button>
                 </StackPanel>
