@@ -13,3 +13,15 @@ C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\MusicPlayer.csproj.Gen
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\MusicPlayer.csproj.CoreCompileInputs.cache
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer.exe
 C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer.pdb
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\TagLibSharp.dll
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\TagLibSharp.pdb
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\TagLibSharp.xml
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\MusicPlayer.csproj.CopyComplete
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\MaterialDesignColors.dll
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\App.baml
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\bin\Debug\Resources\DefaultGif.gif
+C:\Users\Keima\source\repos\NewPlayer\NewPlayer\obj\Debug\NewPlayer_Content.g.cs

@@ -5,13 +5,12 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace NewPlayer.ModelView
 {
     class MainViewModel : BaseViewModel
     {
-        private bool _isResume = false;
-
         private ObservableCollection<string> _musicCollection = new ObservableCollection<string>();
         public ObservableCollection<string> MusicCollection
         {
@@ -20,6 +19,17 @@ namespace NewPlayer.ModelView
             {
                 _musicCollection = value;
                 OnPropertyChanged("MusicCollection");
+            }
+        }
+
+        private BitmapImage _selectedSongImage = new BitmapImage();
+        public BitmapImage SelectedSongImage
+        {
+            get { return _selectedSongImage; }
+            set
+            {
+                _selectedSongImage = value;
+                OnPropertyChanged("SelectedSongImage");
             }
         }
 
@@ -105,8 +115,6 @@ namespace NewPlayer.ModelView
             }
         }
 
-
-
         private RelayCommand _play;
         public RelayCommand Play
         {
@@ -116,9 +124,49 @@ namespace NewPlayer.ModelView
                 {
                     Player.Open(new Uri(SelectedSongPath));
                     Player.Play();
-                    _isResume = true;
+
+                    SetSongPicture();
+
                 });
                 return _play;
+            }
+        }
+
+        private void SetSongPicture() // Метод для загрузки изображения песни (если имеется)
+        {
+            var file = TagLib.File.Create(SelectedSongPath);
+
+            try
+            {
+                using (MemoryStream stream = new MemoryStream(file.Tag.Pictures[0].Data.Data))
+                {
+                    BitmapImage bitmap = new BitmapImage();
+
+                    stream.Position = 0;
+
+                    bitmap.BeginInit();
+                    bitmap.StreamSource = stream;
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+
+                    SelectedSongImage = bitmap;
+                }
+            }
+            catch
+            {
+                //using (MemoryStream stream = new MemoryStream())
+                //{
+                //    BitmapImage bitmap = new BitmapImage();
+
+                //    stream.Position = 0;
+
+                //    bitmap.BeginInit();
+                //    bitmap.StreamSource = stream;
+                //    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                //    bitmap.EndInit();
+
+                //    SelectedSongImage = bitmap;
+                //}
             }
         }
 
@@ -158,8 +206,10 @@ namespace NewPlayer.ModelView
                 {
                     int indexNext = MusicsPath.IndexOf(SelectedSongPath) + 1;
                     Player.Open(new Uri(MusicsPath[indexNext]));
-                    SelectedSong = MusicsPath[indexNext];
+                    SelectedSong = MusicCollection[indexNext];
                     Player.Play();
+
+                    SetSongPicture();
                 });
                 return _next;
             }
@@ -176,15 +226,19 @@ namespace NewPlayer.ModelView
                     {
                         int indexPrevious = MusicsPath.IndexOf(SelectedSongPath) - 1;
                         Player.Open(new Uri(MusicsPath[indexPrevious]));
-                        SelectedSong = MusicsPath[indexPrevious];
+                        SelectedSong = MusicCollection[indexPrevious];
                         Player.Play();
+
+                        SetSongPicture();
                     }
                     catch
                     {
                         Player.Open(new Uri(SelectedSongPath));
                         Player.Play();
+
+                        SetSongPicture();
                     }
-              
+
                 });
                 return _previous;
             }
